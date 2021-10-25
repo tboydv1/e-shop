@@ -16,9 +16,5 @@ public class ShopApplication {
 		SpringApplication.run(ShopApplication.class, args);
 	}
 
-//	@Bean
-//	public HikariDataSource dataSource(){
-//		return new HikariDataSource();
-//	}
 
 }
