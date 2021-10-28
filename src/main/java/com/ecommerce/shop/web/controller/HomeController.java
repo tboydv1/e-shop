@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -20,6 +22,14 @@ public class HomeController {
         List<Product> productList = productServiceImpl.findAll();
         model.addAttribute("products", productList);
         return "index";
+    }
+
+    @GetMapping("/single/{id}")
+    public ModelAndView getSingle(@PathVariable("id") Long id){
+        ModelAndView modelAndView = new ModelAndView("single");
+        Product product = productServiceImpl.findById(id);
+        modelAndView.addObject("product", product);
+        return modelAndView;
     }
 
     @GetMapping("/about")
@@ -42,9 +52,6 @@ public class HomeController {
         return "services";
     }
 
-    @GetMapping("/single")
-    public String getSingle(){
-        return "single";
-    }
+
 
 }
